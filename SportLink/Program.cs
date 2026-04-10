@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using SportLink.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
