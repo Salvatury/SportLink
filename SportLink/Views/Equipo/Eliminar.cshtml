@@ -1,0 +1,35 @@
+﻿@model SportLink.Entidades.Equipo
+
+<h2 class="mt-4">Eliminar Equipo</h2>
+
+<hr />
+
+<div class="alert alert-warning">
+    ¿Estás seguro de que querés eliminar este equipo?
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Nombre:</strong></label>
+    <div>@Model.Nombre</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Descripción:</strong></label>
+    <div>@Model.Descripcion</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Logo:</strong></label>
+    <div>@Model.LogoPath</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Activo:</strong></label>
+    <div>@(Model.Activo ? "Sí" : "No")</div>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" asp-for="EquipoId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

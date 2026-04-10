@@ -1,0 +1,51 @@
+﻿@model List<SportLink.Entidades.Equipo>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Equipos</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Equipo" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Logo</th>
+                <th>Activo</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in Model)
+            {
+                <tr>
+                    <td>@equipo.Nombre</td>
+                    <td>@equipo.Descripcion</td>
+
+                    @* TODO: reemplazar LogoPath por una etiqueta <img> cuando implementemos la subida/visualización de imágenes *@
+                    <td>@equipo.LogoPath</td>
+
+                    <td>@(equipo.Activo ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-controller="Equipo" asp-action="Editar" asp-route-id="@equipo.EquipoId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="Equipo" asp-action="Eliminar" asp-route-id="@equipo.EquipoId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay equipos cargados.
+    </div>
+}
