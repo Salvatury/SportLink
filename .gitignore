@@ -91,7 +91,6 @@ Logs/
 *.ldf
 
 # SQLite
-*.db
 *.db-shm
 *.db-wal
 *.sqlite
