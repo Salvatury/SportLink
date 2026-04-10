@@ -1,0 +1,46 @@
+﻿@model List<SportLink.Entidades.Liga>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Ligas</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Liga" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Activa</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var liga in Model)
+            {
+                <tr>
+                    <td>@liga.Nombre</td>
+                    <td>@liga.Descripcion</td>
+                    <td>@(liga.Activa ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-controller="Liga" asp-action="Editar" asp-route-id="@liga.LigaId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="Liga" asp-action="Eliminar" asp-route-id="@liga.LigaId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay ligas cargadas.
+    </div>
+}
