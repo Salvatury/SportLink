@@ -9,6 +9,13 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Servicios\" />
+    <Folder Include="wwwroot\img\ligas\" />
+    <Folder Include="wwwroot\img\generales\" />
+    <Folder Include="wwwroot\img\usuarios\" />
+    <Folder Include="wwwroot\img\arbitros\" />
+    <Folder Include="wwwroot\img\equipos\" />
+    <Folder Include="wwwroot\img\noticias\" />
+    <Folder Include="wwwroot\img\jugadores\" />
   </ItemGroup>
 
   <ItemGroup>

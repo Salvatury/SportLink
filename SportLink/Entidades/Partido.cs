@@ -1,10 +1,18 @@
-﻿namespace SportLink.Entidades
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SportLink.Entidades
 {
     public class Partido
     {
         public int PartidoId { get; set; }
+
         public DateTime FechaHora { get; set; }
-        public string Estado { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Estado { get; set; } = string.Empty;
+
+        [StringLength(500)]
         public string? Observaciones { get; set; }
 
         public int FechaTorneoId { get; set; }
