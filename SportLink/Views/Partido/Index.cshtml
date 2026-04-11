@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<SportLink.Entidades.Partido>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Partidos</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Partido" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha y hora</th>
+                <th>Estado</th>
+                <th>Observaciones</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var partido in Model)
+            {
+                <tr>
+                    <td>@partido.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@partido.Estado</td>
+                    <td>@partido.Observaciones</td>
+                    <td>
+                        <a asp-controller="Partido" asp-action="Editar" asp-route-id="@partido.PartidoId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="Partido" asp-action="Eliminar" asp-route-id="@partido.PartidoId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay partidos cargados.
+    </div>
 }

@@ -1,5 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model SportLink.Entidades.Partido
+
+<h2 class="mt-4">Editar Partido</h2>
+
+<hr />
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="PartidoId" />
+
+    <div class="mb-3">
+        <label asp-for="FechaHora" class="form-label"></label>
+        <input asp-for="FechaHora" class="form-control" type="datetime-local" />
+        <span asp-validation-for="FechaHora" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Estado" class="form-label"></label>
+        <input asp-for="Estado" class="form-control" />
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Observaciones" class="form-label"></label>
+        <textarea asp-for="Observaciones" class="form-control"></textarea>
+        <span asp-validation-for="Observaciones" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaTorneoId" class="form-label">Fecha de torneo</label>
+        <select asp-for="FechaTorneoId" asp-items="ViewBag.FechasTorneo" class="form-select">
+            <option value="">Seleccione una fecha</option>
+        </select>
+        <span asp-validation-for="FechaTorneoId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EquipoLocalId" class="form-label">Equipo local</label>
+        <select asp-for="EquipoLocalId" asp-items="ViewBag.EquiposLocal" class="form-select">
+            <option value="">Seleccione equipo local</option>
+        </select>
+        <span asp-validation-for="EquipoLocalId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EquipoVisitanteId" class="form-label">Equipo visitante</label>
+        <select asp-for="EquipoVisitanteId" asp-items="ViewBag.EquiposVisitante" class="form-select">
+            <option value="">Seleccione equipo visitante</option>
+        </select>
+        <span asp-validation-for="EquipoVisitanteId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CanchaId" class="form-label">Cancha</label>
+        <select asp-for="CanchaId" asp-items="ViewBag.Canchas" class="form-select">
+            <option value="">Seleccione una cancha</option>
+        </select>
+        <span asp-validation-for="CanchaId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ArbitroId" class="form-label">Árbitro</label>
+        <select asp-for="ArbitroId" asp-items="ViewBag.Arbitros" class="form-select">
+            <option value="">Seleccione un árbitro</option>
+        </select>
+        <span asp-validation-for="ArbitroId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
