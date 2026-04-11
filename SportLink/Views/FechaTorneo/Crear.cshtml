@@ -1,0 +1,39 @@
+﻿@model SportLink.Entidades.FechaTorneo
+
+<h2 class="mt-4">Crear Fecha de Torneo</h2>
+
+<hr />
+
+<form asp-action="Crear" method="post">
+    <div class="mb-3">
+        <label asp-for="Numero" class="form-label"></label>
+        <input asp-for="Numero" class="form-control" />
+        <span asp-validation-for="Numero" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaProgramada" class="form-label"></label>
+        <input asp-for="FechaProgramada" class="form-control" type="datetime-local" />
+        <span asp-validation-for="FechaProgramada" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoriaId" class="form-label">Categoría</label>
+        <select asp-for="CategoriaId" asp-items="ViewBag.Categorias" class="form-select">
+            <option value="">Seleccione una categoría</option>
+        </select>
+        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Cerrada" class="form-check-input" />
+        <label asp-for="Cerrada" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

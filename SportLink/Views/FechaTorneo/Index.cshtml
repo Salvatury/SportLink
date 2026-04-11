@@ -1,0 +1,46 @@
+﻿@model List<SportLink.Entidades.FechaTorneo>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Fechas de Torneo</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="FechaTorneo" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Fecha programada</th>
+                <th>Cerrada</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fecha in Model)
+            {
+                <tr>
+                    <td>@fecha.Numero</td>
+                    <td>@fecha.FechaProgramada?.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@(fecha.Cerrada ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-controller="FechaTorneo" asp-action="Editar" asp-route-id="@fecha.FechaTorneoId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="FechaTorneo" asp-action="Eliminar" asp-route-id="@fecha.FechaTorneoId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay fechas cargadas.
+    </div>
+}

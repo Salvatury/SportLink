@@ -1,0 +1,30 @@
+﻿@model SportLink.Entidades.FechaTorneo
+
+<h2 class="mt-4">Eliminar Fecha de Torneo</h2>
+
+<hr />
+
+<div class="alert alert-warning">
+    ¿Estás seguro de que querés eliminar esta fecha?
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Número:</strong></label>
+    <div>@Model.Numero</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Fecha programada:</strong></label>
+    <div>@Model.FechaProgramada?.ToString("dd/MM/yyyy HH:mm")</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Cerrada:</strong></label>
+    <div>@(Model.Cerrada ? "Sí" : "No")</div>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" asp-for="FechaTorneoId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,45 @@
+﻿@model SportLink.Entidades.Cancha
+
+<h2 class="mt-4">Editar Cancha</h2>
+
+<hr />
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="CanchaId" />
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Direccion" class="form-label"></label>
+        <input asp-for="Direccion" class="form-control" />
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Localidad" class="form-label"></label>
+        <input asp-for="Localidad" class="form-control" />
+        <span asp-validation-for="Localidad" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Provincia" class="form-label"></label>
+        <input asp-for="Provincia" class="form-control" />
+        <span asp-validation-for="Provincia" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Activo" class="form-check-input" />
+        <label asp-for="Activo" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,40 @@
+﻿@model SportLink.Entidades.Cancha
+
+<h2 class="mt-4">Eliminar Cancha</h2>
+
+<hr />
+
+<div class="alert alert-warning">
+    ¿Estás seguro de que querés eliminar esta cancha?
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Nombre:</strong></label>
+    <div>@Model.Nombre</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Dirección:</strong></label>
+    <div>@Model.Direccion</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Localidad:</strong></label>
+    <div>@Model.Localidad</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Provincia:</strong></label>
+    <div>@Model.Provincia</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label"><strong>Activa:</strong></label>
+    <div>@(Model.Activo ? "Sí" : "No")</div>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" asp-for="CanchaId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

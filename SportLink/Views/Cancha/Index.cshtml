@@ -1,0 +1,50 @@
+﻿@model List<SportLink.Entidades.Cancha>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Canchas</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Cancha" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Activa</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cancha in Model)
+            {
+                <tr>
+                    <td>@cancha.Nombre</td>
+                    <td>@cancha.Direccion</td>
+                    <td>@cancha.Localidad</td>
+                    <td>@cancha.Provincia</td>
+                    <td>@(cancha.Activo ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-controller="Cancha" asp-action="Editar" asp-route-id="@cancha.CanchaId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="Cancha" asp-action="Eliminar" asp-route-id="@cancha.CanchaId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay canchas cargadas.
+    </div>
+}
