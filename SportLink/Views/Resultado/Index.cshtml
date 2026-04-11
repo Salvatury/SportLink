@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<SportLink.Entidades.Resultado>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-6">
+        <h2>Resultados</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Resultado" asp-action="Crear" class="btn btn-success">Crear</a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Goles Local</th>
+                <th>Goles Visitante</th>
+                <th>Observaciones</th>
+                <th>Fecha de carga</th>
+                <th style="width: 180px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resultado in Model)
+            {
+                <tr>
+                    <td>@resultado.GolesLocal</td>
+                    <td>@resultado.GolesVisitante</td>
+                    <td>@resultado.Observaciones</td>
+                    <td>@resultado.FechaCarga.ToString("dd/MM/yyyy HH:mm")</td>
+
+                    @* TODO: más adelante agregar columnas con datos relacionados:
+                       partido, equipos y usuario que cargó el resultado *@
+
+                    <td>
+                        <a asp-controller="Resultado" asp-action="Editar" asp-route-id="@resultado.ResultadoId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-controller="Resultado" asp-action="Eliminar" asp-route-id="@resultado.ResultadoId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay resultados cargados.
+    </div>
 }

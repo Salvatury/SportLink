@@ -17,6 +17,9 @@ namespace SportLink.Controllers
         public IActionResult Index()
         {
             var partidos = _context.Partidos.ToList();
+
+            // TODO: más adelante mejorar este listado para mostrar datos relacionados:
+            // fecha de torneo, nombres de equipos, cancha y árbitro.
             return View(partidos);
         }
 
@@ -37,6 +40,7 @@ namespace SportLink.Controllers
                 return View(partido);
             }
 
+            // TODO: validar que el equipo local y visitante no sean el mismo.
             _context.Partidos.Add(partido);
             _context.SaveChanges();
 
@@ -120,10 +124,17 @@ namespace SportLink.Controllers
 
         private void CargarCombos(Partido? partido = null)
         {
+            // TODO: mostrar una descripción más amigable para la fecha de torneo,
+            // por ejemplo "Fecha 1 - Primera".
             ViewBag.FechasTorneo = new SelectList(_context.FechasTorneo.ToList(), "FechaTorneoId", "Numero", partido?.FechaTorneoId);
+
+            // TODO: filtrar equipos según la categoría o fecha seleccionada.
             ViewBag.EquiposLocal = new SelectList(_context.Equipos.ToList(), "EquipoId", "Nombre", partido?.EquipoLocalId);
             ViewBag.EquiposVisitante = new SelectList(_context.Equipos.ToList(), "EquipoId", "Nombre", partido?.EquipoVisitanteId);
+
             ViewBag.Canchas = new SelectList(_context.Canchas.ToList(), "CanchaId", "Nombre", partido?.CanchaId);
+
+            // TODO: mostrar Nombre + Apellido y filtrar solo usuarios árbitros.
             ViewBag.Arbitros = new SelectList(_context.Usuarios.ToList(), "UsuarioId", "Nombre", partido?.ArbitroId);
         }
     }

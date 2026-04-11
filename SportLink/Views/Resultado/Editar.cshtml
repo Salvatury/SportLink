@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model SportLink.Entidades.Resultado
+
+<h2 class="mt-4">Editar Resultado</h2>
+
+<hr />
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="ResultadoId" />
+
+    <div class="mb-3">
+        <label asp-for="GolesLocal" class="form-label"></label>
+        <input asp-for="GolesLocal" class="form-control" />
+        <span asp-validation-for="GolesLocal" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GolesVisitante" class="form-label"></label>
+        <input asp-for="GolesVisitante" class="form-control" />
+        <span asp-validation-for="GolesVisitante" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Observaciones" class="form-label"></label>
+        <textarea asp-for="Observaciones" class="form-control"></textarea>
+        <span asp-validation-for="Observaciones" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaCarga" class="form-label"></label>
+        <input asp-for="FechaCarga" class="form-control" type="datetime-local" />
+        <span asp-validation-for="FechaCarga" class="text-danger"></span>
+    </div>
+
+    @* TODO: más adelante este select debería mostrar una descripción clara del partido,
+       no solo el PartidoId *@
+    <div class="mb-3">
+        <label asp-for="PartidoId" class="form-label">Partido</label>
+        <select asp-for="PartidoId" asp-items="ViewBag.Partidos" class="form-select">
+            <option value="">Seleccione un partido</option>
+        </select>
+        <span asp-validation-for="PartidoId" class="text-danger"></span>
+    </div>
+
+    @* TODO: más adelante este select debería mostrar Nombre + Apellido
+       y filtrar usuarios válidos para carga de resultados *@
+    <div class="mb-3">
+        <label asp-for="CargadoPorUsuarioId" class="form-label">Usuario</label>
+        <select asp-for="CargadoPorUsuarioId" asp-items="ViewBag.Usuarios" class="form-select">
+            <option value="">Seleccione un usuario</option>
+        </select>
+        <span asp-validation-for="CargadoPorUsuarioId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
